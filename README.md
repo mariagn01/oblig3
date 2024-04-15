@@ -10,7 +10,7 @@ Github brukernavn: mariagn01
 
 Github repo URL: https://github.com/mariagn01/oblig3.git
 
-Video av prosjekt: https://vimeo.com/934777457
+Video av prosjekt: https://vimeo.com/934775609
 
 Github repo for oblig 1 (med kommentarer og commits): https://github.com/mariagn01/oblig1.git
 
