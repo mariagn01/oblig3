@@ -12,7 +12,7 @@ import java.util.List;
 public class BillettController {
 
 @Autowired
-private BillettRepository rep;
+public BillettRepository rep;
 
     @GetMapping("/hentFilmer")
     public ArrayList<String> hentFilmer() {
