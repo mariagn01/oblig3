@@ -10,6 +10,8 @@ Github brukernavn: mariagn01
 
 Github repo URL: https://github.com/mariagn01/oblig3.git
 
+Video av prosjekt: https://vimeo.com/934777457
+
 Github repo for oblig 1 (med kommentarer og commits): https://github.com/mariagn01/oblig1.git
 
 Github repo for oblig 2 (med kommentarer, commits og skjermbilder): https://github.com/mariagn01/kinobilletter.git
