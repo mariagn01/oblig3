@@ -18,5 +18,5 @@ Github repo for oblig 2 (med kommentarer, commits og skjermbilder): https://gith
 
 Kort beskrivelse av applikasjonen:
 
-Applikasjonen lar bruker legge inn bestillinger av kinobilletter. Input lagres i et array på server, mens funksjoner for kjøp av billett, validering av inputs og sletting av billetter er laget med JavaScript. Billetter lagres i et array, og arrayet tømmes når billettene slettes. Billettene listet opp i en tabell. Applikasjonen er stylet med Bootstrap v.5.
+Applikasjonen lar bruker legge inn bestillinger av kinobilletter. Input lagres i en H2-database på server, mens funksjoner for kjøp av billett, validering av inputs og sletting av billetter er laget med JavaScript. Databasen tømmes når billettene slettes. Billettene listes opp i en tabell. Applikasjonen er stylet med Bootstrap v.5.
 
