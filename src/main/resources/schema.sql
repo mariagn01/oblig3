@@ -6,6 +6,6 @@ CREATE TABLE Billett
     telefonnr SMALLINT NOT NULL,
     epost VARCHAR(255) NOT NULL,
     film  VARCHAR(255) NOT NULL,
-    antall SMALLINT NOT NULL
+    antall SMALLINT NOT NULL,
     primary key (id)
 );
