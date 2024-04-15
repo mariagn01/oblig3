@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -30,7 +32,9 @@ public BillettRepository rep;
 
     @GetMapping("/hentBilletter")
     public List<Billett> hentBilletter() {
-        return rep.hentBilletter();
+        List<Billett> billetter = rep.hentBilletter();
+        Collections.sort(billetter, Comparator.comparing(Billett::getEtternavn));
+        return billetter;
     }
 
     @GetMapping("/slettAlle")

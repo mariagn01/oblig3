@@ -14,7 +14,8 @@ public class BillettRepository {
 
     public void lagreBillett (Billett innBillett) {
         String sql = "INSERT INTO Billett (fornavn, etternavn, telefonnr, epost, film, antall) VALUES(?,?,?,?,?,?)";
-        db.update(sql, innBillett.getFornavn(), innBillett.getEtternavn(), innBillett.getTelefonnr(), innBillett.getEpost(), innBillett.getFilm(), innBillett.getAntall());
+        db.update(sql, innBillett.getFornavn(), innBillett.getEtternavn(), innBillett.getTelefonnr(), innBillett.getEpost(),
+                innBillett.getFilm(), innBillett.getAntall());
         System.out.println("Lagret");
     }
 
