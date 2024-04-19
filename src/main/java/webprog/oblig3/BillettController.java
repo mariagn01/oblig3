@@ -10,8 +10,8 @@ import java.util.*;
 @RestController
 public class BillettController {
 
-@Autowired
-public BillettRepository rep;
+    @Autowired
+    public BillettRepository rep;
 
     @GetMapping("/hentFilmer")
     public ArrayList<String> hentFilmer() {
@@ -22,6 +22,7 @@ public BillettRepository rep;
         filmliste.add("Dune");
         return filmliste;
     }
+
     @PostMapping("/lagre")
     public void lagreBillett(Billett innBillett) {
         rep.lagreBillett(innBillett);
@@ -32,6 +33,21 @@ public BillettRepository rep;
         List<Billett> billetter = rep.hentBilletter();
         Collections.sort(billetter, Comparator.comparing(Billett::getEtternavn));
         return billetter;
+    }
+
+    @GetMapping("/hentEnBillett")
+    public Billett hentEnBillett(int id) {
+        return rep.hentEnBillett(id);
+    }
+
+    @PostMapping("/endreEnBillett")
+    public void endreEnBillett(Billett billett) {
+        rep.endreEnBillett(billett);
+    }
+
+    @GetMapping("/slettEnBillett")
+    public void slettEnBillett(int id) {
+        rep.slettEnBillett(id);
     }
 
     @GetMapping("/slettAlle")

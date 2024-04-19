@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public class BillettRepository {
 
-    @Autowired
-    private JdbcTemplate db;
+@Autowired
+private JdbcTemplate db;
 
     public void lagreBillett (Billett innBillett) {
         String sql = "INSERT INTO Billett (fornavn, etternavn, telefonnr, epost, film, antall) VALUES(?,?,?,?,?,?)";
@@ -23,6 +23,22 @@ public class BillettRepository {
         String sql = "SELECT * FROM Billett";
         List<Billett> AlleBilletter = db.query(sql, new BeanPropertyRowMapper<>(Billett.class));
         return AlleBilletter;
+    }
+
+    public Billett hentEnBillett(int id) {
+        String sql = "SELECT * FROM Billett WHERE id=?";
+        Billett enBillett = db.queryForObject(sql, BeanPropertyRowMapper.newInstance(Billett.class),id);
+        return enBillett;
+    }
+
+    public void endreEnBillett(Billett billett) {
+        String sql = "UPDATE Billett SET fornavn=?, etternavn=?, telefonnr=?, epost=?, film=?, antall=? WHERE id=?";
+        db.update(sql, billett.getFornavn(), billett.getEtternavn(), billett.getTelefonnr(), billett.getEpost(), billett.getFilm(), billett.getAntall(), billett.getId());
+    }
+
+    public void slettEnBillett(int id) {
+        String sql = "DELETE FROM Billett WHERE id=?";
+        db.update(sql,id);
     }
 
     public void slettBilletter(){

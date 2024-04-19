@@ -1,6 +1,6 @@
 $(function (){
     hentFilmer();
-    visBilletter()
+    hentEnBillett()
 })
 
 function hentFilmer() {
@@ -18,12 +18,24 @@ function formaterFilmliste(filmer) {
     filmliste += "</select>"
     $("#filmliste").html(filmliste);
 }
+function hentEnBillett() {
+    const id = window.location.search.substring(1);
+    const url ="/hentEnBillett?id="+id;
+    $.get(url, function (billett) {
+        $("#id").val(billett.id); // må ha med id inn skjemaet, hidden i html
+        $("#fornavn").val(billett.fornavn);
+        $("#etternavn").val(billett.etternavn);
+        $("#telefonnr").val(billett.telefonnr);
+        $("#e-post").val(billett.epost);
+        $("#film").val(billett.film);
+        $("#antall").val(billett.antall);
+    })
+}
 
-function kjopbillett () {
-//Bruker en egen valideringsfunksjon for å sjekke inputfelter før denne funksjonen kjøres
+function endreEnBillett () {
     if (validerInputs()) {
-        //Legger verdier i et objekt og legger dette inn i array på server
         const billett = {
+            id: $("#id").val(),
             fornavn: $("#fornavn").val(),
             etternavn: $("#etternavn").val(),
             telefonnr: $("#telefonnr").val(),
@@ -32,60 +44,10 @@ function kjopbillett () {
             antall: $("#antall").val()
         }
 
-        $.post("/lagre", billett, function () {
-            visBilletter();
+        $.post("/endreEnBillett", billett, function () {
+            window.location.href="/index.html";
         })
-
-        //Tømmer inputfelt
-        $("#film").val("")
-        $("#fornavn").val("")
-        $("#etternavn").val("")
-        $("#telefonnr").val("")
-        $("#e-post").val("")
-        $("#film").val("")
-        $("#antall").val("")
-
     }
-}
-
-//Funksjon for visning/oversikt av billetter som henter array fra server og formaterer med en egen funksjon
-function visBilletter () {
-    $.get("/hentBilletter", function (billetter) {
-        formaterData(billetter);
-    })
-}
-
-function formaterData(billetter) {
-    let ut= "<table class='table'><tr>" +
-        "<th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>Telefonnr</th><th>E-post</th><th></th><th></th>" +
-        "</tr>";
-    for (const billett of billetter){
-        ut+="<tr>";
-        ut+="<td>"+billett.film+"</td><td>"+billett.antall+"</td><td>"+billett.fornavn+"</td><td>"+billett.etternavn+"</td><td>"+billett.telefonnr+"</td><td>"+billett.epost+"</td>";
-        ut+="<td><button class='btn btn-dark' onclick='idTilEndring("+billett.id+")'>Endre</button></td><td>" +
-        "<button class='btn btn-danger' onclick='slettEnBillett("+billett.id+")'>Slett</button></td>";
-        ut+="</tr>";
-    }
-    ut += "</table>"
-    $("#billettvisning").html(ut);
-}
-
-function idTilEndring(id) {
-    window.location.href = "/endre.html?"+id;
-}
-function slettEnBillett(id) {
-    const url = "/slettEnBillett?id="+id;
-    $.get(url, function() {
-        window.location.href = "/";
-    });
-}
-
-//Funksjon for sletting av billetter som tømmer array
-function slettbilletter () {
-    $.get("/slettAlle", function (){
-        visBilletter()
-    })
-    $("#billettvisning").html("Billettene er slettet");
 }
 
 //Funksjon for validering av inputfelt, der hvert felt valideres ved if-setninger
